@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "project picker"
+version = "0.1.0"
+description = "Project Picker to reduce decision fatigue with Pomodoro counts and more features incoming."
+authors = ["Akshat <akshat.pande@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.33.0"
+matplotlib = "^3.8.4"
+pandas = "^2.2.2"
+numpy = "^1.26.4"
+gspread = "^6.1.0"
+google-auth-oauthlib = "^1.2.0"
+google-auth-httplib2 = "^0.2.0"
+oauth2client = "^4.1.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
