@@ -5,13 +5,15 @@ import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
 import time
 from datetime import datetime
+import json
 
-st.secrets.db_credentials.username
 
-g_credentials = st.secret["google_auth"]['g_credentials'] // returns a dictionary
+
+g_credentials = st.secrets["google_auth"]
+cred = dict(g_credentials) 
 # Google Sheets Authentication
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name(g_credentials, scope)
+credentials = ServiceAccountCredentials.from_json_keyfile_dict( cred, scope)
 gc = gspread.authorize(credentials)
 
 # Load Google Sheet data
