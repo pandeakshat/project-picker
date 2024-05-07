@@ -65,8 +65,34 @@ button {
 )
 
 
-
-if st.button("Select Project"):
+st.header("Choose your project:")
+project=st.selectbox("Select Project", df['Project'].values)
+st.write("You selected:", project)
+if st.toggle("Confirm Selection"):
+    with st.expander( project + " Details", expanded=True):
+            selected_columns = ['Project', 'Complexity', 'Priority', 'Pomodoros', 'Last Updated']  # Columns you want to display
+            st.write(df[df['Project'] == project][selected_columns])
+            st.write(df[df['Project'] == project]['Information'].values[0])
+            st.link_button("Go to Project", "https://google.com")
+            search_column = 1  # Column to check for the value
+            search_value = project  # Value to find in the row
+            cell = worksheet.find(search_value, in_column=search_column)  
+            row_number = cell.row
+            last_update_column = update  # Column to update
+            last_update = str(now.strftime("%Y/%m/%d %I:%M %p"))
+            worksheet.update_cell(row_number, last_update_column, last_update)
+            ph = st.empty()
+            N = 25*60
+            for secs in range(N,0,-1):
+                mm, ss = secs//60, secs%60
+                ph.metric("Countdown", f"{mm:02d}:{ss:02d}")
+                time.sleep(1)
+            pomodoro_column = pomodoro  # Column to update
+            pomodoro_value = int(df[df['Project'] == project]['Pomodoros'].values[0] + 1)
+            worksheet.update_cell(row_number, pomodoro_column, pomodoro_value)
+            st.write("Success!")
+     
+if st.button("Select Project Randomly"):
     st.header("Project Selected: " + selected_project)
     with st.expander( selected_project + " Details", expanded=True):
             selected_columns = ['Project', 'Complexity', 'Priority', 'Pomodoros', 'Last Updated']  # Columns you want to display
