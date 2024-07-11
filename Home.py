@@ -30,7 +30,7 @@ now = datetime.now()
 # Project Selection Logic (with weights and biases)
 def calculate_score(row):
     # Modify weights as desired
-    score =  (row['Pomodoros'] * -0.3) + \
+    score =  (row['Pomodoros'] * 0.3) + \
              (row['Complexity'] * 0.2) + \
              (row['Priority'] * 0.4) 
     return score
