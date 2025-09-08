@@ -1,0 +1,32 @@
+/* app/globals.css */
+
+/* Tailwind imports first (base reset, then components/utilities) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Panda CSS for Chakra v3 – generates atomic styles and vars from theme tokens */
+@import 'panda/css';
+
+/* Custom CSS vars (extendable in Chakra theme tokens for consistency) */
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0a0a0a;
+      --foreground: #ededed;
+    }
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans, Arial, sans-serif); /* Use var for Geist fallback */
+  }
+}
